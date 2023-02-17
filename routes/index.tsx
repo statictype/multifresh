@@ -1,7 +1,5 @@
 import type { Handlers, PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
-import { WalletConnect, WalletDisconnect } from "components/buttons";
-import AccountSelect from "../components/AccountSelect.tsx";
 import { NavBar } from "../components/NavBar.tsx";
 import { TopBar } from "../components/TopBar.tsx";
 

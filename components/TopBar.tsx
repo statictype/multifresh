@@ -1,6 +1,6 @@
 import { getCookies, setCookie } from "std/http/cookie.ts";
 import { WalletConnect, WalletDisconnect } from "components/buttons";
-import AccountSelect from "../components/AccountSelect.tsx";
+import AccountSelect from "../islands/AccountSelect.tsx";
 
 interface Props {
   web3Allowed: boolean;
