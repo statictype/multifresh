@@ -6,14 +6,16 @@ import config from "./deno.json" assert { type: "json" };
 import * as $0 from "./routes/api/wallet/connect.ts";
 import * as $1 from "./routes/api/wallet/disconnect.ts";
 import * as $2 from "./routes/api/wallet/setAccount.ts";
-import * as $3 from "./routes/index.tsx";
+import * as $3 from "./routes/create-multisig.tsx";
+import * as $4 from "./routes/index.tsx";
 
 const manifest = {
   routes: {
     "./routes/api/wallet/connect.ts": $0,
     "./routes/api/wallet/disconnect.ts": $1,
     "./routes/api/wallet/setAccount.ts": $2,
-    "./routes/index.tsx": $3,
+    "./routes/create-multisig.tsx": $3,
+    "./routes/index.tsx": $4,
   },
   islands: {},
   baseUrl: import.meta.url,
