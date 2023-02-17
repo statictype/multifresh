@@ -6,6 +6,7 @@ export const handler: Handlers = {
     const url = new URL(req.url);
     const headers = new Headers(req.headers);
     deleteCookie(headers, "web3Allowed", { path: "/", domain: url.hostname });
+    deleteCookie(headers, "web3Account", { path: "/", domain: url.hostname });
     headers.set("location", "/");
     return new Response(null, {
       status: 302,

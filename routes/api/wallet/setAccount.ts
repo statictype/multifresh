@@ -6,10 +6,10 @@ export const handler: Handlers = {
     const url = new URL(req.url);
     const headers = new Headers();
     const form = await req.formData();
-
+    const value = form.get("selectedAccount")?.toString() || "";
     setCookie(headers, {
       name: "web3Account",
-      value: form.get("selectedAccount")?.toString() || "",
+      value,
       maxAge: 11120,
       sameSite: "Lax",
       domain: url.hostname,
