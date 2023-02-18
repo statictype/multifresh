@@ -1,14 +1,6 @@
 import type { Handlers, PageProps } from "$fresh/server.ts";
-import { Head } from "$fresh/runtime.ts";
-import { NavBar } from "../components/NavBar.tsx";
-import { TopBar } from "../components/TopBar.tsx";
-
-interface Web3Wallet {
-  web3Allowed: boolean;
-  providers: string[];
-  accounts: string[];
-  web3Account: string | undefined;
-}
+import { PageWithContext } from "../components/PageWithContext.tsx";
+import { AppState } from "../types/index.ts";
 
 export const handler: Handlers = {
   async GET(req, ctx) {
@@ -16,16 +8,6 @@ export const handler: Handlers = {
   },
 };
 
-export default function CreateMultisig({ data }: PageProps<Web3Wallet>) {
-  return (
-    <>
-      <Head>
-        <link rel="stylesheet" href="global.css" />
-      </Head>
-      <div className="grid gap-4 h-full">
-        <TopBar web3Allowed={data.web3Allowed} web3Account={data.web3Account} />
-        <NavBar />
-      </div>
-    </>
-  );
+export default function CreateMultisig(props: PageProps<AppState>) {
+  return <PageWithContext {...props}></PageWithContext>;
 }
