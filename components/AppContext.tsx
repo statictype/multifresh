@@ -8,7 +8,7 @@ import { signal } from "@preact/signals-core";
 import { retry } from "../util/retry.ts";
 import { maybeInjectedAccounts } from "../util/accounts.ts";
 
-interface Props extends PageProps<State> {
+interface Props extends State {
   children?: ComponentChildren;
 }
 
@@ -16,7 +16,7 @@ const accounts = signal<InjectedAccount[]>([]);
 
 if (IS_BROWSER) {
   accounts.value = await retry(maybeInjectedAccounts, {
-    retries: 3,
+    retries: 6,
     retryIntervalMs: 300,
   });
 }
@@ -29,7 +29,7 @@ const initial: AppState = {
 
 const AppContext = createContext<AppState>(initial);
 
-export function AppContextProvider({ children, data }: Props) {
+export function AppContextProvider({ children, ...data }: Props) {
   return (
     <AppContext.Provider value={{ ...data, accounts }}>
       {children}

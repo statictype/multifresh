@@ -16,7 +16,7 @@ export function PageWithContext({ children, ...props }: Props) {
       <Head>
         <link rel="stylesheet" href="global.css" />
       </Head>
-      <AppContextProvider {...props}>
+      <AppContextProvider {...props.data}>
         <div className="grid gap-4 h-full">
           <TopBar />
           <NavBar />
