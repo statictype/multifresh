@@ -1,5 +1,4 @@
 import { IS_BROWSER } from "$fresh/runtime.ts";
-import type { PageProps } from "$fresh/server.ts";
 import { ComponentChildren, createContext } from "preact";
 import { useContext } from "preact/hooks";
 import { AppState, State } from "../types/index.ts";

@@ -3,27 +3,9 @@ import { AppState } from "../types/index.ts";
 import { Listbox, Transition } from "@headlessui/react";
 import { useEffect, useState } from "preact/hooks";
 import { Fragment } from "preact/jsx-runtime";
-import { InjectedAccount } from "https://esm.sh/v106/@polkadot/extension-inject@0.44.8/X-ZS8q/types";
+import { InjectedAccount } from "@polkadot/extension-inject/types";
 import { ChevronUpDownIcon } from "../util/icons.tsx";
 
-{
-  // <form method="post" action="/api/wallet/setAccount" className="mr-6">
-  //   <select name="selectedAccount" className="mr-3 w-24">
-  //     {accounts.value.length > 0
-  //       ? accounts.value.map(({ address }) => {
-  //         return (
-  //           <option selected={address === web3Account}>
-  //             {address}
-  //           </option>
-  //         );
-  //       })
-  //       : <option>{web3Account}</option>}
-  //   </select>
-  //   <button type="submit" className="px-4 px-2 bg-gray-700 text-white">
-  //     use
-  //   </button>
-  // </form>
-}
 const saveAccount = async (account: UIAccount) => {
   return await fetch(`${window.location.origin}/api/wallet/setAccount`, {
     method: "POST",
@@ -49,8 +31,8 @@ export default function AccountSelect(
   } as InjectedAccount);
 
   useEffect(() => {
-    saveAccount(selected).then((a) => {
-      console.log(a);
+    saveAccount(selected).catch((e) => {
+      console.error(e);
     });
   }, [selected]);
 
