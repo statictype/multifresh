@@ -9,6 +9,11 @@
     "@polkadot/extension-inject/types": "https://esm.sh/*@polkadot/extension-inject@0.44.8/types",
     "twind": "https://esm.sh/twind@0.16.17",
     "twind/": "https://esm.sh/twind@0.16.17/",
+    "@twind/forms": "https://esm.sh/v99/@twind/forms@0.1.4?deps=twind@0.16.17",
+    "@twind/forms/": "https://esm.sh/v99/@twind/forms@0.1.4?deps=twind@0.16.17/",
+    "@headlessui/react": "https://esm.sh/*@headlessui/react@1.7.3?external=react,react-dom,@types/react,@types/react-dom",
+    "react": "https://esm.sh/preact@10.11.0/compat",
+    "react-dom": "https://esm.sh/preact@10.11.0/compat",
     "std/": "https://deno.land/std@0.160.0/",
     "components/buttons": "./components/buttons/index.ts"
   }

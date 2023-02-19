@@ -5,8 +5,8 @@ import { useAppContext } from "./AppContext.tsx";
 export function TopBar({}: { web3Account?: string }) {
   const { web3Allowed, web3Account } = useAppContext();
   return (
-    <div className="bg-gray-300 p-4 h-16">
-      <div className="flex">
+    <div className="bg-gray-300 p-4">
+      <div className="flex items-center justify-end">
         {web3Allowed
           ? (
             <>
