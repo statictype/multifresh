@@ -24,14 +24,15 @@ import { ChevronUpDownIcon } from "../util/icons.tsx";
   //   </button>
   // </form>
 }
-const saveAccount = async (account: UIAccount) =>
-  await fetch("http://localhost:8000/api/wallet/setAccount", {
+const saveAccount = async (account: UIAccount) => {
+  return await fetch(`${window.location.origin}/api/wallet/setAccount`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ selectedAccount: account.name }),
   });
+};
 
 interface UIAccount {
   name?: string;
