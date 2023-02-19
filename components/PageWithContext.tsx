@@ -3,10 +3,10 @@ import type { PageProps } from "$fresh/server.ts";
 import { NavBar } from "../components/NavBar.tsx";
 import { TopBar } from "../components/TopBar.tsx";
 import { ComponentChildren } from "preact";
-import { AppState } from "../types/index.ts";
+import { State } from "../types/index.ts";
 import { AppContextProvider } from "./AppContext.tsx";
 
-interface Props extends PageProps<AppState> {
+interface Props extends PageProps<State> {
   children?: ComponentChildren;
 }
 

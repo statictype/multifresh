@@ -1,10 +1,6 @@
 import { MiddlewareHandlerContext } from "$fresh/server.ts";
 import { getCookies } from "std/http/cookie.ts";
-
-interface State {
-  web3Allowed: boolean;
-  web3Account: string | undefined;
-}
+import { State } from "../types/index.ts";
 
 export async function handler(
   req: Request,

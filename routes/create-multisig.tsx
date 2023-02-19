@@ -1,6 +1,6 @@
 import type { Handlers, PageProps } from "$fresh/server.ts";
 import { PageWithContext } from "../components/PageWithContext.tsx";
-import { AppState } from "../types/index.ts";
+import { State } from "../types/index.ts";
 
 export const handler: Handlers = {
   async GET(req, ctx) {
@@ -8,6 +8,6 @@ export const handler: Handlers = {
   },
 };
 
-export default function CreateMultisig(props: PageProps<AppState>) {
+export default function CreateMultisig(props: PageProps<State>) {
   return <PageWithContext {...props}></PageWithContext>;
 }
