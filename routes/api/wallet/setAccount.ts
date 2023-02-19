@@ -5,11 +5,10 @@ export const handler: Handlers = {
   async POST(req) {
     const url = new URL(req.url);
     const headers = new Headers();
-    const form = await req.formData();
-    const value = form.get("selectedAccount")?.toString() || "";
+    const value = await req.json();
     setCookie(headers, {
       name: "web3Account",
-      value,
+      value: value.selectedAccount,
       maxAge: 11120,
       sameSite: "Lax",
       domain: url.hostname,

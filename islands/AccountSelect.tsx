@@ -1,8 +1,10 @@
 import { useAppContext } from "../components/AppContext.tsx";
 import { AppState } from "../types/index.ts";
 import { Listbox, Transition } from "@headlessui/react";
-import { useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import { Fragment } from "preact/jsx-runtime";
+import { InjectedAccount } from "https://esm.sh/v106/@polkadot/extension-inject@0.44.8/X-ZS8q/types";
+import { ChevronUpDownIcon } from "../util/icons.tsx";
 
 {
   // <form method="post" action="/api/wallet/setAccount" className="mr-6">
@@ -22,40 +24,49 @@ import { Fragment } from "preact/jsx-runtime";
   //   </button>
   // </form>
 }
+const saveAccount = async (account: UIAccount) =>
+  await fetch("http://localhost:8000/api/wallet/setAccount", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ selectedAccount: account.name }),
+  });
+
+interface UIAccount {
+  name?: string;
+  address?: string;
+}
 
 export default function AccountSelect(
   { web3Account }: Partial<AppState>,
 ) {
   const { accounts } = useAppContext();
-  console.log("Accounts in island", accounts.value);
   const [selected, setSelected] = useState({
     name: web3Account,
     address: web3Account,
-  });
+  } as InjectedAccount);
+
+  useEffect(() => {
+    saveAccount(selected).then((a) => {
+      console.log(a);
+    });
+  }, [selected]);
+
+  useEffect(() => {
+    if (!accounts.value[0] || web3Account) return;
+    setSelected(accounts.value[0]);
+  }, []);
 
   return (
     <div className="w-72 mr-4">
       <Listbox value={selected} onChange={setSelected}>
         <div className="relative mt-1">
           <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 sm:text-sm">
-            <span className="block truncate">{selected.name}</span>
-            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="h-5 w-5 text-gray-400"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"
-                />
-              </svg>
+            <span className="block truncate">
+              {selected.name}
             </span>
+            <ChevronUpDownIcon />
           </Listbox.Button>
           <Transition
             as={Fragment}
